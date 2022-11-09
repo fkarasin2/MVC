@@ -1,0 +1,19 @@
+@model MvcLearning.Models.Classes.Category;
+@{
+    ViewBag.Title = "Kategori Ekle";
+    Layout = "AdminLayout";
+}
+<br/>
+<h2 class="m-3">Yeni Kategori</h2>
+<br/>
+<form class="form-group m-3" method="post">
+    <label>Kategori Adı</label>
+    @Html.TextBoxFor(x => x.categoryName, new
+    {
+        @class="form-control",
+        @placeholder="Kategori Adı Giriniz"
+        
+    })
+    <br/>
+    <button class="btn btn-info ms-auto">Kaydet</button>
+</form>

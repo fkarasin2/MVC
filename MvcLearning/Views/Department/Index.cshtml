@@ -1,0 +1,33 @@
+@using MvcLearning.Models.Classes
+@model List<Department>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-end my-3">
+        <a href=@Url.Action("NewDepartment", "Department") class="btn btn-primary">Yeni Kategori</a></div>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Kategori Id</th>
+            <th>Kategori Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            <th>Detaylar</th>
+        </tr>
+        @{
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.departmentId</td>
+                    <td>@item.departmentName</td>
+                    <td><a href="/Department/DeleteDepartment/@item.departmentId" class="btn btn-danger text-light">Sil</a></td>
+                    <td><a href="/Department/UpdateDepartment/@item.departmentId" class="btn btn-warning">Güncelle</a></td>
+                    <td><a href="#" class="btn btn-success">Detaylar</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

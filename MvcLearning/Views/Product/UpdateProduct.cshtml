@@ -1,0 +1,74 @@
+@model MvcLearning.Models.Classes.Product;
+@{
+    ViewBag.Title = "Yeni Ürün";
+    Layout = "AdminLayout";
+}
+
+<h2 class="m-3">Ürünü Güncelle</h2>
+<br/>
+
+@using (Html.BeginForm("GetProduct", "Product", FormMethod.Post, new {@class= "m-3"}))
+{
+            @Html.HiddenFor(x=>x.productId)
+            <label>Ürün Adı</label>
+            @Html.TextBoxFor(x => x.productName, new
+            {
+                @class = "form-control w-100"
+            })
+
+
+            <label>Ürün Markası</label>
+            @Html.TextBoxFor(x => x.productBrand, new
+            {
+                @class = "form-control w-100"
+            })
+
+    
+
+        <label>Ürün Stoğu</label>
+        @Html.TextBoxFor(x => x.stockCounts, new
+        {
+            @class = "form-control"
+        })
+
+        <label>Ürün Alış Fiyatı</label>
+        @Html.TextBoxFor(x => x.buyPrice, new
+        {
+            @class = "form-control"
+        })
+
+        
+
+            <label>Ürün Satış Fiyatı</label>
+            @Html.TextBoxFor(x => x.sellPrice, new
+            {
+                @class = "form-control"
+            })
+
+            <label>Ürün Kategorisi</label>
+            @*          @Html.TextBoxFor(x => x.categoryID, new
+            {
+                @class = "form-control"
+            })*@
+            @Html.DropDownListFor(x=>x.categoryID,(List<SelectListItem>)ViewBag.value1, new
+            {
+                @class= @"form-control"
+            })
+
+
+            <label>Ürün Fotoğrafı</label>
+        @Html.TextBoxFor(x => x.productImg, new
+        {
+            @class = "form-control"
+        })
+
+            <label>Ürün Durumu</label>
+            @Html.TextBoxFor(x => x.state, new
+            {
+                @class = "form-control"
+            })
+        <br/>
+            <button class="btn btn-success">Kaydet</button>
+}
+
+

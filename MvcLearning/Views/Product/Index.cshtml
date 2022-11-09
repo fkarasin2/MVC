@@ -1,0 +1,55 @@
+@using MvcLearning.Models.Classes
+@using System.Globalization
+@model List<Product>
+
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "AdminLayout";
+}
+
+<div class="container-fluid">
+        <div class="d-flex justify-content-end my-3">
+            <a href=@Url.Action("NewProduct", "Product") class="btn btn-primary">Yeni Ürün</a></div>
+
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Ürün Id</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Markası</th>
+            <th>Stok</th>
+            <th>Alış Fiyatı</th>
+            <th>Satış Fiyatı</th>
+            <th>Durumu</th>
+            <th>Görsel</th>
+            <th>Kategorisi</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.productId</td>
+                <td>@item.productName</td>
+                <td>@item.productBrand</td>
+                <td>@item.stockCounts</td>
+                <td>@item.buyPrice.ToString("C0", CultureInfo.CreateSpecificCulture("tr-TR"))</td>
+                <td>@item.sellPrice.ToString("C0",CultureInfo.CreateSpecificCulture("tr-TR"))</td>
+                @{
+                    if (@item.state == true)
+                    {
+                        <td>Mevcut</td>
+                    }
+                    else
+                    {
+                        <td>Stokta Yok</td>
+                    }
+                }
+                <td>@item.productImg</td>
+                <td>@item.Category.categoryName</td>
+                <td><a href="/Product/DeleteProduct/@item.productId" class="btn btn-danger text-light">Sil</a></td>
+                <td><a href="/Product/UpdateProduct/@item.productId" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+</div>
